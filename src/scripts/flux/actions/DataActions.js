@@ -8,6 +8,7 @@ class DataActions {
 
         this.pagesEndPoint = `${appUrl}/wp-json/wp/v2/pages`; // Endpoint for getting Wordpress Pages
         this.postsEndPoint = `${appUrl}/wp-json/wp/v2/posts`; // Endpoint for getting Wordpress Posts
+        this.menusEndPoint = `${appUrl}/json-menus/`; // Endpoint for getting Wordpress Menus
     }
 
     // Method for getting data from the provided end point url
@@ -24,22 +25,32 @@ class DataActions {
     // Method for getting Pages data
     getPages(cb){
         this.api(this.pagesEndPoint).then((response)=>{
-            this.getPosts(response, cb)
+            this.getMenus(response, cb)
+        });
+        return true;
+    }
+
+    // Method for getting Menus data
+    getMenus(pages, cb){
+        this.api(this.menusEndPoint).then((response)=>{
+            this.getPosts(pages, response.menus, cb)
         });
         return true;
     }
 
     // Method for getting Posts data
-    getPosts(pages, cb){
+    getPosts(pages, menus, cb){
         this.api(this.postsEndPoint).then((response)=>{
             const posts     = response
-            const payload   = { pages, posts };
+            const payload   = { pages, menus, posts };
 
             this.getSuccess(payload); // Pass returned data to the store
             cb(payload); // This callback will be used for dynamic rout building
         });
         return true;
     }
+
+
 
     // This returnes an object with Pages and Posts data together
     // The Alt Store will listen for this method to fire and will store the returned data

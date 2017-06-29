@@ -14,7 +14,9 @@ class DataStore {
             getAll:         this.getAll,
             getAllPages:    this.getAllPages,
             getAllPosts:    this.getAllPosts,
-            getPageBySlug:  this.getPageBySlug
+            getAllMenus:    this.getAllMenus,
+            getPageBySlug:  this.getPageBySlug,
+            getMenuBySlug:  this.getMenuBySlug
         });
     }
 
@@ -38,11 +40,24 @@ class DataStore {
         return this.getState().data.posts; 
     }
 
+    // Returns all Menus
+    getAllMenus() { 
+        return this.getState().data.menus; 
+    }
+
     // Returns a Page by provided slug
     getPageBySlug(slug){
         const pages = this.getState().data.pages;
         return pages[Object.keys(pages).find((page, i) => {
             return pages[page].slug === slug;
+        })] || {};
+    }
+
+    // Returns a Menu by provided slug
+    getMenuBySlug(slug){
+        const menus = this.getState().data.menus;
+        return menus[Object.keys(menus).find((menu, i) => {
+            return menus[menu].slug === slug;
         })] || {};
     }
 
