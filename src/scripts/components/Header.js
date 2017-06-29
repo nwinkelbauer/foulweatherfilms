@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
-import DataStore from 'flux/stores/DataStore.js'
+import DataStore from 'flux/stores/DataStore.js';
+import SubLinks from './SubLinks.js'
 
 class Header extends React.Component {   
    
@@ -12,21 +13,25 @@ class Header extends React.Component {
 
         return (
             <div className="header">
-                <Link to="/" style={{marginRight: '10px'}} >Home</Link>
+                <ul>
+                <li><Link to="/" style={{marginRight: '10px'}} >Home</Link></li>
 
                 {headerMenu.map((page) => {
-                    if(page.slug != 'home'){
+                    if(page.slug != 'home' && page.slug){
                        return(
-                            <Link 
+                            <li><Link 
                                 key={`nav-page-id-${page.id}`} 
                                 to={`/${page.slug}`}
                                 style={{marginRight: '10px'}}
                             >
                                 {page.title}
                             </Link>
+                            <SubLinks children={page.children} />
+                            </li>
                         )                     
                    }
                 })}
+                </ul>
             </div>
         );
     }

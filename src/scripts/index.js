@@ -4,6 +4,7 @@ import DataActions          from 'flux/actions/DataActions.js';
 import Home                 from 'components/Home.js';
 import About                from 'components/About.js';
 import Header               from 'components/Header.js';
+//import SubLink              from 'components/SubLink.js';
 
 import Style                from '../less/style.less'
 
