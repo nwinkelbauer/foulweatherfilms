@@ -18,7 +18,7 @@ class Header extends React.Component {
         headerMenu = _.sortBy(headerMenu, [function(page) { return page.menu_order; }]);
 
         return (
-            <div className="header">
+            <div id="header" className="header">
                 <ul>
                 <li><Link to="/" style={{marginRight: '10px'}} >Home</Link></li>
 
