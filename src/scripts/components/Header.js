@@ -2,14 +2,20 @@ import {Link} from 'react-router-dom';
 import DataStore from 'flux/stores/DataStore.js';
 import SubLinks from './SubLinks.js'
 
+function isEmpty(myObject) {
+    for(var key in myObject) {
+        if (myObject.hasOwnProperty(key)) {
+            return false;
+        }
+    }
+    return true;
+}
+
 class Header extends React.Component {   
-   
+
     render() {
-        //let allPages = DataStore.getAllPages();
-        //allPages = _.sortBy(allPages, [function(page) { return page.menu_order; }]); // Sort pages by order
         let headerMenu = DataStore.getMenuBySlug('menu');
         headerMenu = _.sortBy(headerMenu, [function(page) { return page.menu_order; }]);
-        console.log(headerMenu)
 
         return (
             <div className="header">
@@ -19,14 +25,14 @@ class Header extends React.Component {
                 {headerMenu.map((page) => {
                     if(page.slug != 'home' && page.slug){
                        return(
-                            <li><Link 
+                            <li key={`nav-page-id-${page.id}`}><Link 
                                 key={`nav-page-id-${page.id}`} 
                                 to={`/${page.slug}`}
                                 style={{marginRight: '10px'}}
                             >
                                 {page.title}
                             </Link>
-                            <SubLinks children={page.children} />
+                            { !isEmpty(page.children) && <SubLinks items={page.children}/> }
                             </li>
                         )                     
                    }
