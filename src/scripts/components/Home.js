@@ -1,5 +1,6 @@
 import DataStore from 'flux/stores/DataStore.js';
-import {Link} from 'react-router-dom';
+import Slide from './Slide.js';
+import Sidelink from './Sidelink.js';
 
 class Home extends React.Component {
     render() {
@@ -13,13 +14,10 @@ class Home extends React.Component {
             {homeMenu.map((page, i) => {
             	if(page.slug){
 	            	var section = DataStore.getPageBySlug(page.slug);
-	            	console.log(section);
+	            	//console.log(section);
 
 	               return(
-	                    <div id={`parallax-${i}`} className={`parallaxParent ${section.slug}`} key={`page-${section.id}`}>
-							<h2>{section.title.rendered}</h2>
-							<div style={{backgroundImage: `url(${section.featured_image_url[0]})`}} className="parallaxChild"></div>
-						</div>
+	                    <Slide items={section} />
 	                )  
 	            }                   
             })}
@@ -27,14 +25,9 @@ class Home extends React.Component {
             <div id="side-nav">
             	<ul>
             		{homeMenu.map((page, i) => {
-		            	if(page.slug){
+		            	if(page.slug && page.slug != 'home'){
 			               return(
-			                    <li className={`side-nav-item ${page.slug}`} key={`nav-${page.slug}`}>
-			                    <Link to={`/${page.slug}`}>{page.title}</Link>
-			                    <svg x="0px" y="0px" viewBox="0 0 100 100">
-								<circle fill="#FFFFFF" cx="50" cy="50" r="50"/>
-								</svg>
-	                            </li>
+			                    <Sidelink items={page} />
 			                )  
 			            }                   
 		            })}
