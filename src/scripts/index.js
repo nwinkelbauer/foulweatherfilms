@@ -4,6 +4,7 @@ import DataActions          from 'flux/actions/DataActions.js';
 import Home                 from 'components/Home.js';
 import About                from 'components/About.js';
 import Header               from 'components/Header.js';
+import Portfolio            from 'components/Portfolio.js';
 //import SubLink              from 'components/SubLink.js';
 
 import Style                from '../less/style.less'
@@ -19,7 +20,9 @@ import {
 class AppInitializer {
 
     templates = {
-        'about': About
+        'templates/page_about.php': About,
+        'templates/page_portfolio.php': Portfolio,
+        'templates/page_home.php': Home
     }
 
     buildRoutes(data){
@@ -27,7 +30,7 @@ class AppInitializer {
             return(
                 <Route
                     key={i}
-                    component={this.templates[page.slug]}
+                    component={this.templates[page.template]}
                     path={`/${page.slug}`}
                     exact
                 /> 

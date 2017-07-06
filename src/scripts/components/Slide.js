@@ -5,7 +5,7 @@ class Slide extends React.Component {
     render() {
     	
     	let section = this.props.items;
-        //console.log(this.props)
+        //console.log(section)
         return (
 	        <div id={`parallax-${section.slug}`} className={`parallaxParent ${section.slug}`} key={`page-${section.id}`}>
 				<h2>{section.title.rendered}</h2>
