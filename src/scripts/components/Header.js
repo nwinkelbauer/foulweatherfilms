@@ -16,9 +16,12 @@ class Header extends React.Component {
     render() {
         let headerMenu = DataStore.getMenuBySlug('menu');
         headerMenu = _.sortBy(headerMenu, [function(page) { return page.menu_order; }]);
+        let home = DataStore.getPageBySlug('home');
+        let logo = home.logo_image_url[0];
 
         return (
             <div id="header" className="header">
+                <img src={logo} height='40px' />
                 <ul>
                 <li><Link to="/" style={{marginRight: '10px'}} >Home</Link></li>
 

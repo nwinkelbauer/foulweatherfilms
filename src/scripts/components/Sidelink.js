@@ -44,7 +44,6 @@ class Sidelink extends React.Component {
 	}
 
 	scrollHandler() {
-		
 		var size = 0,
 			windowHeight = window.innerHeight/2,
 			elementID = `parallax-${this.props.items.slug}`,

@@ -17,13 +17,14 @@ class Video extends React.Component {
         this.id = page.video_customs.url[0];
         let image = page.featured_image_url[0] || "";
         let catVids = DataStore.getVideosByCategory(page.categories[0]);
-        for(var i = 0; i < catVids.length; i++) {
-            if(catVids[i].slug === page.slug){
+        for(var i = 0; i < catVids.length; i) { 
+            if(catVids[i].slug === page.slug || !catVids[i].video_customs.url[0]){
                 catVids.splice(i, 1);
+            } else {
+                i++;
             }
         }
         catVids = catVids[Math.floor(Math.random()*catVids.length)];
-        console.log(catVids)
 
         return (
          //  <div>
@@ -54,21 +55,22 @@ class Video extends React.Component {
           <div id="video">
             <Link to={`/${cat}`} className="back-button"><p>Back to category</p></Link>
             <div className="container">
-                <div id="vimeo-player" style={{backgroundImage: `url(${image})`}}></div>
+                <div id="vimeo-player"></div>
                 <div className="video-info">
                     <small>{page.video_customs.client[0]}</small>
                     <h2>{page.title.rendered}</h2>
                     <small>{page.video_customs.date[0]}</small>
                     <div dangerouslySetInnerHTML={{__html: page.content.rendered}}></div>
                 </div>
-                <div className="related-video">
-                    <h3>Next Video</h3>
-                    <Link to={`/${cat}/${catVids.slug}`}>
-                        <div className="next-image" style={{backgroundImage: `url(${catVids.featured_image_url[0]})`}}>
-                            <h4>{catVids.title.rendered}</h4>
-                        </div>
-                    </Link>
-                </div>
+                {catVids &&
+                    <div className="related-video">
+                        <h3>Next Video</h3>
+                        <Link to={`/${cat}/${catVids.slug}`}>
+                            <div className="next-image" style={{backgroundImage: `url(${catVids.featured_image_url[0]})`}}>
+                                <h4>{catVids.title.rendered}</h4>
+                            </div>
+                        </Link>
+                    </div>}
             </div>
         </div>
         );

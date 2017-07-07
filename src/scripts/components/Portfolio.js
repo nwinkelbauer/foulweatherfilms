@@ -24,7 +24,7 @@ class Portfolio extends React.Component {
         	<div className="videos">
             {videos.map((video, i) => {
             	
-            	//console.log(video);
+            if(video.video_customs.url[0]){
 
                return(
                     <div className="video" key={video.slug}>
@@ -40,6 +40,7 @@ class Portfolio extends React.Component {
                         </Link>
                     </div>
                 )  
+            }
 	                              
             })}
             </div>
