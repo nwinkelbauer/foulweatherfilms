@@ -4,12 +4,13 @@ import alt   from 'flux/alt/alt.js';
 class DataActions {
 
     constructor() {
-        //const appUrl = 'http://wordpress-foul.dev'; // Work Wordpress installation url
-        const appUrl = 'http://fwf.dev/index.php'; //home laptop install
+        const appUrl = 'http://wordpress-foul.dev'; // Work Wordpress installation url
+        //const appUrl = 'http://fwf.dev/index.php'; //home laptop install
 
         this.pagesEndPoint = `${appUrl}/wp-json/wp/v2/pages`; // Endpoint for getting Wordpress Pages
         this.postsEndPoint = `${appUrl}/wp-json/wp/v2/posts`; // Endpoint for getting Wordpress Posts
         this.menusEndPoint = `${appUrl}/json-menus/`; // Endpoint for getting Wordpress Menus
+        this.videosEndPoint = `${appUrl}/wp-json/wp/v2/videos`; // Endpoint for getting Wordpress Videos
     }
 
     // Method for getting data from the provided end point url
@@ -34,16 +35,24 @@ class DataActions {
     // Method for getting Menus data
     getMenus(pages, cb){
         this.api(this.menusEndPoint).then((response)=>{
-            this.getPosts(pages, response.menus, cb)
+            this.getVideos(pages, response.menus, cb)
+        });
+        return true;
+    }
+
+    // Method for getting Menus data
+    getVideos(pages, menus, cb){
+        this.api(this.videosEndPoint).then((response)=>{
+            this.getPosts(pages, menus, response, cb)
         });
         return true;
     }
 
     // Method for getting Posts data
-    getPosts(pages, menus, cb){
+    getPosts(pages, menus, videos, cb){
         this.api(this.postsEndPoint).then((response)=>{
             const posts     = response
-            const payload   = { pages, menus, posts };
+            const payload   = { pages, menus, videos, posts };
 
             this.getSuccess(payload); // Pass returned data to the store
             cb(payload); // This callback will be used for dynamic rout building

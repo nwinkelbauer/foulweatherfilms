@@ -1,33 +1,50 @@
 import DataStore from 'flux/stores/DataStore.js';
+import $ from 'jquery';
+import {Link} from 'react-router-dom';
+
+function ObjToArray(obj){
+    var array = $.map(obj, function(value, index) {
+        return [value];
+    });
+    return array;
+}
 
 class Portfolio extends React.Component {
     render() {
     	 let page = DataStore.getPageBySlug(this.props.location.pathname.replace('/',''));
-         let posts = DataStore.getAllPosts();
+         let videos = DataStore.getVideosByCategory(page.page_customs.category[0]);
+         videos = ObjToArray(videos);
 
-         console.log(posts)
-        // return (
-        //   <div>
-        // 	<div id="homepage">
-        //     {homeMenu.map((page, i) => {
-        //     	if(page.slug){
-	       //      	var section = DataStore.getPageBySlug(page.slug);
-	       //      	//console.log(section);
-
-	       //         return(
-	       //              <Slide items={section} />
-	       //          )  
-	       //      }                   
-        //     })}
-        //     </div>
-        //   </div>
-        // );
+         //console.log(page)
+         //console.log(videos)
         return (
-            <div>
-                <h2>portfolio</h2>
-            </div>
-        );
+          <div id="portfolio">
+            <Link to={`/`} className="back-button"><p>Back to home</p></Link>
+            <h2>{page.title.rendered}</h2>
+        	<div className="videos">
+            {videos.map((video, i) => {
+            	
+            	//console.log(video);
 
+               return(
+                    <div className="video" key={video.slug}>
+                        <Link to={`/${page.slug}/${video.slug}`}>
+                        <div style={{backgroundImage: `url(${video.featured_image_url[0]})`}} className="videoThumbnail"></div>
+                        <div className="video-info">
+                            <div>
+                                <small>{video.video_customs.client[0]}</small>
+                                <h3>{video.title.rendered}</h3>
+                                <small>{video.video_customs.date[0]}</small>
+                            </div>
+                        </div>
+                        </Link>
+                    </div>
+                )  
+	                              
+            })}
+            </div>
+          </div>
+        );
     }
 }
 

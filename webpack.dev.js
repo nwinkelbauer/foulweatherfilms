@@ -64,7 +64,14 @@ module.exports = {
 					plugins: ['transform-runtime'],
 					presets: ['es2015', 'stage-0', 'react'],
 				}
-			}
+			},
+			{
+				test: /\.(png|jpg|gif|svg)$/, 
+				include: [
+					path.resolve(__dirname, "src"),
+				],
+				loader: ['url-loader'] 
+			},
 		]
 	},
 	plugins: [

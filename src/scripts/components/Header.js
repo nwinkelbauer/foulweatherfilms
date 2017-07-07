@@ -24,11 +24,14 @@ class Header extends React.Component {
 
                 {headerMenu.map((page) => {
                     if(page.slug != 'home' && page.slug){
+                        let classer = (page.slug === 'portfolio') ? 'page-port' : '';
                        return(
-                            <li key={`nav-page-id-${page.id}`}><Link 
+                            <li key={`nav-page-id-${page.id}`} className={classer}><Link 
                                 key={`nav-page-id-${page.id}`} 
                                 to={`/${page.slug}`}
                                 style={{marginRight: '10px'}}
+                                className={classer}
+                                id={classer}
                             >
                                 {page.title}
                             </Link>
@@ -40,6 +43,20 @@ class Header extends React.Component {
                 </ul>
             </div>
         );
+    }
+
+    componentDidMount() {
+        document.getElementById('page-port').addEventListener('click', this.handleClick, false);
+    }
+
+    componentWillUnmount() {
+        document.getElementById('page-port').removeEventListener('click', this.handleClick);
+    }
+
+    handleClick(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        //console.log(this);
     }
 }
 

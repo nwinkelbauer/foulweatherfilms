@@ -51,8 +51,8 @@ class Sidelink extends React.Component {
 			topPosition = Math.abs(document.getElementById(elementID).getBoundingClientRect().top);
 
 		if(topPosition < windowHeight){
-			size = Math.round((1-(topPosition/windowHeight))*40)
-			console.log(size);
+			size = Math.round((1-(topPosition/windowHeight))*60);
+			size = (size > 40) ? 40 : size;
 		}
     	this.setState({fontSize: `${size}px`});
     	this.vars.ticking = false;
