@@ -25,7 +25,8 @@
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1",
     "scrollmagic": "^2.0.5",
-    "style-loader": "^0.18.2"
+    "style-loader": "^0.18.2",
+    "url-builder": "^0.2.1"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

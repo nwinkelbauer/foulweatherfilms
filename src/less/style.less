@@ -355,13 +355,12 @@ body {
 		min-height: 100vh;
 		padding: 70px 2.5%;
 
-	}
-	div.blog {
-		padding: 70px 0;
 	}	
 	div.about-section {
-		width: 35%;
-		float: right;
+		width: 25%;
+		right: 0;
+    	top: 0;
+    	position: fixed;
 		background-color: rgba(0, 0, 0, 1);
 		color: white;
 		text-align: right;
@@ -397,21 +396,74 @@ body {
 		}
 	}
 	div.blog {
-		width: 55%;
+		width: 70%;
 		float: left;
+		padding: 70px 0;
 	}
 }
 div.blog-post {
 	width: 100%;
-	height: 300px;
-	img:nth-child(odd) {
+	height: 400px;
+	&:nth-child(odd) .image-container {
 		float: left;
 	}
-	img:nth-child(even) {
-		float: left;
+	&:nth-child(even) .image-container {
+		float: right;
 	}
-	div.content {
-		margin: 30px;
+	&:nth-child(odd) div.content-container {
+		text-align: right;
+   		float: right;
+   		div.content {
+   			right: 0;
+   			left: inherit;
+   		}
+	}
+	.image-container {
+		width: 55%;
+		height: 0;
+		padding-bottom: 38%;
+		position: relative;
+		.image {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			-webkit-background-size: cover;
+	        -moz-background-size: cover;
+	        -o-background-size: cover;
+	        background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+		}
+	}
+	div.content-container {
+		width: 40%;
+		height: 0;
+		padding-bottom: 38%;
+		position: relative;
+		div.content {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			padding: 0 15px;
+			overflow: hidden;
+		}
+	}
+	p.link-more {
+		display: none;
+	}
+	&.expanded {
+		height: 100%;
+		.image-container {
+			float: none;
+			width: 100%;
+			padding-bottom: 50%;
+		}
+		.content-container {
+			float: none;
+			width: 100%;
+		}
 	}
 }
 a.back-button {

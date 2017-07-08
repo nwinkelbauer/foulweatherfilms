@@ -5,23 +5,23 @@ class Post extends React.Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
         this.post = this.props.items;
-        this.state = {__html: this.post.excerpt.rendered};
+        this.state = {  __html: this.post.excerpt.rendered };
         this.expanded = false;
         this.expandState = "more";
       }
 
     render() {
-        console.log(this.post)
         return (
-            <div className="blog-post">
+            <div className="blog-post" ref="post_read_more">
                 { this.post.featured_image_url[0] && 
-                    <img src={this.post.featured_image_url[0]} height='300px' />
+                    <div className="image-container"><div className="image" style={{backgroundImage: `url(${this.post.featured_image_url[0]})`}}></div></div>
                 }
+                <div className="content-container">
                 <div className="content">
                     <h3>{this.post.title.rendered}</h3>
                     <div dangerouslySetInnerHTML={this.state} ref="excerptToContent"></div>
                     <a className="read-more" href={`/about/${this.post.slug}`} ref="read_more">Read {this.expandState}</a>
-                </div>
+                </div></div>
             </div>
         );
     }
