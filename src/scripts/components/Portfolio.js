@@ -14,6 +14,9 @@ class Portfolio extends React.Component {
     	 let page = DataStore.getPageBySlug(this.props.location.pathname.replace('/',''));
          let videos = DataStore.getVideosByCategory(page.page_customs.category[0]);
          videos = ObjToArray(videos);
+         videos.sort(function(a, b) {
+            return b.video_customs.date[0] - a.video_customs.date[0];
+        });
 
          //console.log(page)
          //console.log(videos)
