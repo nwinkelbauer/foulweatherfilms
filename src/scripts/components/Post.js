@@ -1,5 +1,4 @@
 
-
 class Post extends React.Component {
     constructor(props) {
         super(props);
@@ -26,11 +25,11 @@ class Post extends React.Component {
         );
     }
     componentDidMount() {
-        this.refs.read_more.addEventListener('click', this.handleClick, false);
+        //this.refs.read_more.addEventListener('click', this.handleClick, false);
     }
 
     componentWillUnmount() {
-        this.refs.read_more.removeEventListener('click', this.handleClick);
+        //this.refs.read_more.removeEventListener('click', this.handleClick);
     }
 
     handleClick(event) {

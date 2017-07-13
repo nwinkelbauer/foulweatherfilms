@@ -82,9 +82,15 @@ class DataStore {
         const videos = this.getState().data.videos;
         let returnVideos = new Array();
         for(var i = 0, len = videos.length; i < len; i++){
-            if(videos[i].categories.includes(parseInt(id)))
+            if(videos[i].categories.includes(parseInt(id)) && videos[i].video_customs.url && videos[i].video_customs.order)
                 returnVideos.push(videos[i]);
         }
+        returnVideos.sort(function(a, b) {
+            if((a.video_customs.order[0] == b.video_customs.order[0]) && b.video_customs.date && a.video_customs.date) {
+                return b.video_customs.date[0] - a.video_customs.date[0];
+            }
+            return a.video_customs.order[0] - b.video_customs.order[0];
+        });
         return returnVideos;
     }
 

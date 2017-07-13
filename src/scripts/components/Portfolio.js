@@ -2,21 +2,12 @@ import DataStore from 'flux/stores/DataStore.js';
 import $ from 'jquery';
 import {Link} from 'react-router-dom';
 
-function ObjToArray(obj){
-    var array = $.map(obj, function(value, index) {
-        return [value];
-    });
-    return array;
-}
 
 class Portfolio extends React.Component {
     render() {
+        console.log(this.props.location)
     	 let page = DataStore.getPageBySlug(this.props.location.pathname.replace('/',''));
          let videos = DataStore.getVideosByCategory(page.page_customs.category[0]);
-         videos = ObjToArray(videos);
-         videos.sort(function(a, b) {
-            return b.video_customs.date[0] - a.video_customs.date[0];
-        });
 
          //console.log(page)
          //console.log(videos)
@@ -26,9 +17,6 @@ class Portfolio extends React.Component {
             <h2>{page.title.rendered}</h2>
         	<div className="videos">
             {videos.map((video, i) => {
-            	
-            if(video.video_customs.url[0]){
-
                return(
                     <div className="video" key={video.slug}>
                         <Link to={`/${page.slug}/${video.slug}`}>
@@ -42,9 +30,7 @@ class Portfolio extends React.Component {
                         </div>
                         </Link>
                     </div>
-                )  
-            }
-	                              
+                )                  
             })}
             </div>
           </div>

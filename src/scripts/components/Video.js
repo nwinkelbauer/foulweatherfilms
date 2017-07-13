@@ -16,44 +16,12 @@ class Video extends React.Component {
         slug = slug[slug.length-1];
         let page = DataStore.getVideoBySlug(slug);
         this.id = page.video_customs.url[0];
-        console.log(this.id)
         let image = page.featured_image_url[0] || "";
         let catVids = DataStore.getVideosByCategory(page.categories[0]);
-        for(var i = 0; i < catVids.length; i) { 
-            if(catVids[i].slug === page.slug || !catVids[i].video_customs.url[0]){
-                catVids.splice(i, 1);
-            } else {
-                i++;
-            }
-        }
-        catVids = catVids[Math.floor(Math.random()*catVids.length)];
+        let index = catVids.indexOf(page);
+        catVids = index < (catVids.length - 1) ? catVids[index+1] : catVids[0];
 
         return (
-         //  <div>
-        	// <div id="homepage">
-         //    {homeMenu.map((page, i) => {
-         //    	if(page.slug){
-	        //     	var section = DataStore.getPageBySlug(page.slug);
-	        //     	//console.log(section);
-
-	        //        return(
-	        //             <Slide items={section} />
-	        //         )  
-	        //     }                   
-         //    })}
-         //    </div>
-         //    <div id="side-nav">
-         //    	<ul>
-         //    		{homeMenu.map((page, i) => {
-		       //      	if(page.slug && page.slug != 'home'){
-			      //          return(
-			      //               <Sidelink items={page} />
-			      //           )  
-			      //       }                   
-		       //      })}
-         //    	</ul>
-         //    </div>
-         //  </div>
           <div id="video">
             <Link to={`/${cat}`} className="back-button"><p>Back to category</p></Link>
             <div className="container">
