@@ -7,7 +7,9 @@ import About                from 'components/About.js';
 import Header               from 'components/Header.js';
 import Portfolio            from 'components/Portfolio.js';
 import Video                from 'components/Video.js';
-//import SubLink              from 'components/SubLink.js';
+import Photo                from 'components/Photo.js';
+import Default              from 'components/Default.js';
+import Blog              from 'components/Blog.js';
 
 import Style                from '../less/style.less';
 
@@ -25,7 +27,10 @@ class AppInitializer {
         'templates/page_about.php': About,
         'templates/page_portfolio.php': Portfolio,
         'templates/page_home.php': Home,
-        'page_video': Video
+        'templates/page_photo.php': Photo,
+        'templates/page_blog.php': Blog,
+        'page_video': Video,
+        '': Default
     }
 
     ObjToArray(obj){

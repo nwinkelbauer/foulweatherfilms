@@ -4,8 +4,8 @@ import alt   from 'flux/alt/alt.js';
 class DataActions {
 
     constructor() {
-        //const appUrl2 = 'http://wordpress-foul.dev'; // Work Wordpress installation url
-        const appUrl = 'http://foulweatherfilms.com/cms'; //home laptop install
+        const appUrl = 'http://fwf.dev/index.php'; // Work Wordpress installation url
+        //const appUrl = 'http://foulweatherfilms.com/cms'; //home laptop install
 
         this.pagesEndPoint = `${appUrl}/wp-json/wp/v2/pages?per_page=99`; // Endpoint for getting Wordpress Pages
         this.postsEndPoint = `${appUrl}/wp-json/wp/v2/posts?per_page=15`; // Endpoint for getting Wordpress Posts
@@ -40,7 +40,7 @@ class DataActions {
         return true;
     }
 
-    // Method for getting Menus data
+    // Method for getting Videos data
     getVideos(pages, menus, cb){
         this.api(this.videosEndPoint).then((response)=>{
             this.getPosts(pages, menus, response, cb)

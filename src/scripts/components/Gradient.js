@@ -8,7 +8,8 @@ class Gradient extends React.Component {
 	    this.requestTick = this.requestTick.bind(this);
 	    this.scrollHandler = this.scrollHandler.bind(this);
 	    this.vars = {ticking: false};
-	    this.state = {background: 'rgba(0, 0, 0, 0.7)'};
+	    //var backgroundColor = 
+	    this.state = {background: `rgba(0, 0, 0, ${props.gradient})`};
 	  }
 
     render() {
@@ -40,13 +41,13 @@ class Gradient extends React.Component {
 
 	scrollHandler() {
 		
-		var shade = .7,
+		var shade = this.props.gradient,
 			windowHeight = window.innerHeight,
 			topPosition = Math.abs(ReactDOM.findDOMNode(this).getBoundingClientRect().top);
 
 		if(topPosition < windowHeight && this.props.items !== 'home'){
 			shade = (topPosition/windowHeight);
-		}
+		} 
 		var backgroundColor = `rgba(0, 0, 0, ${shade})`;
     	this.setState({background: backgroundColor});
 

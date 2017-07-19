@@ -1,6 +1,8 @@
 import {Link} from 'react-router-dom';
+import $ from 'jquery';
 import DataStore from 'flux/stores/DataStore.js';
 import SubLinks from './SubLinks.js'
+import About from './About.js';
 
 function isEmpty(myObject) {
     for(var key in myObject) {
@@ -15,9 +17,7 @@ class Header extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleScroll = this.handleScroll.bind(this);
-        this.requestTick = this.requestTick.bind(this);
-        this.scrollHandler = this.scrollHandler.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.vars = {ticking: false}; 
         this.state = {  visibility : 'hidden' };
       }
@@ -36,7 +36,8 @@ class Header extends React.Component {
 
                 {headerMenu.map((page) => {
                     if(page.slug != 'home' && page.slug){
-                        let classer = (page.slug === 'portfolio') ? 'page-port' : '';
+                        let classer = (!Array.isArray(page.children)) ? 'page-port ' : '';
+                        classer += (page.slug === "portfolio" || page.slug === "about") ? 'deactivate ' + page.slug : '';
                        return(
                             <li key={`nav-page-id-${page.id}`} className={classer}><Link 
                                 key={`nav-page-id-${page.id}`} 
@@ -53,52 +54,38 @@ class Header extends React.Component {
                    }
                 })}
                 </ul>
+                <About />
             </div>
         );
     }
 
     componentDidMount() {
-        document.getElementById('page-port').addEventListener('click', this.handleClick, false);
+        let comp = document.getElementsByClassName('deactivate');
+        for (var i = 0; i < comp.length; i++) {
+            comp[i].addEventListener('click', this.handleClick, false);
+        }
+        
        // window.addEventListener('scroll', this.handleScroll, false);
     }
 
     componentWillUnmount() {
-        document.getElementById('page-port').removeEventListener('click', this.handleClick);
+        let comp = document.getElementsByClassName('deactivate');
+        for (var i = 0; i < comp.length; i++) {
+            comp[i].removeEventListener('click', this.handleClick);
+        }
+        
         //window.removeEventListener('scroll', this.handleScroll);
     }
 
     handleClick(event) {
         event.preventDefault();
         event.stopPropagation();
-        //console.log(this);
-    }
-
-    handleScroll(event) {
-       this.requestTick();
-    }
-
-    requestTick() {
-        if(!this.vars.ticking) {
-            this.vars.ticking = true;
-            requestAnimationFrame(this.scrollHandler);
+        if(event.target.classList.contains("about")){
+            $("#about").toggleClass("active");
+            $(event.target).toggleClass("active");
         }
     }
 
-    scrollHandler() {
-        // var size = 0,
-        //     windowHeight = window.innerHeight/2,
-        //     topPosition = Math.abs(document.getElementById('parallax-home').getBoundingClientRect().top);
-
-        // if(this.visible && (topPosition < windowHeight) && if(window.location.pathname === "/"){){
-        //     this.setState({visibility: "hidden"});
-        //     this.visible = false;
-        // }
-        // if(!this.visible && (topPosition > windowHeight)){
-        //     this.setState({visibility: "visible"});
-        //     this.visible = true;
-        // }
-        this.vars.ticking = false;
-    }
 }
 
 export default Header;

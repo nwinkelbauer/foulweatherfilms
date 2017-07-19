@@ -16,7 +16,11 @@ class Slide extends React.Component {
     render() {
     	
     	let section = this.props.items;
-        //console.log(section)
+        let gradient = '.4';
+        if(section.page_customs.gradient && section.page_customs.gradient[0] !== ""){
+            gradient = section.page_customs.gradient[0];
+        }
+        //console.log(gradient)
         // <source src={`https://player.vimeo.com/video/${section.page_customs.video[0]}`} type="video/mp4" />
         return (
 	        <div id={`parallax-${section.slug}`} className={`parallaxParent ${section.slug}`} key={`page-${section.id}`}>
@@ -24,7 +28,7 @@ class Slide extends React.Component {
                     { section.video_image_url && <source src={section.video_image_url} type="video/mp4" /> }
                 </video>
                 <h2>{section.title.rendered}</h2>
-				<Gradient items={section.slug} />
+				<Gradient items={section.slug} gradient={gradient} />
                 {section.slug === 'home' &&
                     <div  className="logo-header"><img src={section.logo_image_url[0]}></img></div>
                   }

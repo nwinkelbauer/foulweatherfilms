@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 
 class Portfolio extends React.Component {
     render() {
-        console.log(this.props.location)
     	 let page = DataStore.getPageBySlug(this.props.location.pathname.replace('/',''));
          let videos = DataStore.getVideosByCategory(page.page_customs.category[0]);
 
