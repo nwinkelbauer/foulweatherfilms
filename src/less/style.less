@@ -375,7 +375,8 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     height: 100vh;
     z-index: -1;
 	h2 {
@@ -419,6 +420,9 @@ body {
 				text-decoration: underline;
 			}
 		}
+		.contact {
+			margin-right: 40px;
+		}
 		.phone:before {
 			content: '';
 			background: url(../assets/phone.png);
@@ -429,8 +433,10 @@ body {
 			width: 20px;
 			height: 20px;
 			display: inline-block;	
-			margin-right: 20px;
+			//margin-right: 20px;
 			margin-bottom: -5px;
+			position: absolute;
+    		right: 25px;
 		}
 		.email:before {
 			content: '';
@@ -442,8 +448,10 @@ body {
 			width: 20px;
 			height: 20px;
 			display: inline-block;	
-			margin-right: 20px;
+			//margin-right: 20px;
 			margin-bottom: -5px;
+			position: absolute;
+    		right: 25px;
 		}
 		.vimeo:before {
 			content: '';
@@ -455,8 +463,25 @@ body {
 			width: 20px;
 			height: 20px;
 			display: inline-block;	
-			margin-right: 20px;
+			//margin-right: 20px;
 			margin-bottom: -5px;
+			position: absolute;
+    		right: 25px;
+		}
+		.address:before {
+			content: '';
+			background: url(../assets/address.png);
+			-webkit-background-size: cover;
+	        -moz-background-size: cover;
+	        -o-background-size: cover;
+	        background-size: cover;
+			width: 20px;
+			height: 20px;
+			display: inline-block;	
+			//margin-right: 20px;
+			margin-top: 7px;
+			position: absolute;
+    		right: 25px;
 		}
 	}
 	// div.blog {
