@@ -127,7 +127,16 @@ body {
 			&:hover a,
 			&:active a,
 			&:focus a {
-				font-size: 40px !important;
+				font-size: 40px;
+				opacity: 1 !important;
+			}
+			a {
+				font-size: 36px;
+				-webkit-transition: all .5s ease;
+				-moz-transition: all .5s ease;
+				-o-transition: all .5s ease;
+				-ms-transition: all .5s ease;
+				transition: all .5s ease;
 			}
 			svg {
 				height: 15px;
@@ -374,11 +383,16 @@ body {
 	width: 350px;
     position: absolute;
     top: 0;
-    right: 0;
+    right: -360px;
     overflow-y: scroll;
     overflow-x: hidden;
     height: 100vh;
     z-index: -1;
+    -webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	transition: all 1s ease;
 	h2 {
 		text-indent: -9999px;
 	    white-space: nowrap;
@@ -391,23 +405,18 @@ body {
 		padding: 0 25px 70px 25px;
 
 	}
-	&.active div.about-section {
-		right: 0;
+	&.active {
+		right: -20px;
 	}	
 	div.about-section {
 		width: 300px;
-		right: -360px;
+    	right: 0;
     	top: 50px;
     	position: absolute;
 		background-color: rgba(0, 0, 0, 1);
 		color: white;
 		text-align: right;
 		//padding-top: 20%;
-		-webkit-transition: all 1s ease;
-		-moz-transition: all 1s ease;
-		-o-transition: all 1s ease;
-		-ms-transition: all 1s ease;
-		transition: all 1s ease;
 		div > p {
 			margin: 40px 0;
 		}

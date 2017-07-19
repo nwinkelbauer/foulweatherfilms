@@ -9,7 +9,7 @@ class Sidelink extends React.Component {
 	    this.requestTick = this.requestTick.bind(this);
 	    this.scrollHandler = this.scrollHandler.bind(this);
 	    this.vars = {ticking: false};
-	    this.state = {fontSize: '0'};
+	    this.state = {opacity: '0'};
 	  }
 
     render() {
@@ -50,10 +50,10 @@ class Sidelink extends React.Component {
 			topPosition = Math.abs(document.getElementById(elementID).getBoundingClientRect().top);
 
 		if(topPosition < windowHeight){
-			size = Math.round((1-(topPosition/windowHeight))*60);
-			size = (size > 40) ? 40 : size;
+			size = ((.8-(topPosition/windowHeight))*1.25);
+			//size = (size > 40) ? 40 : size;
 		}
-    	this.setState({fontSize: `${size}px`});
+    	this.setState({opacity: `${size}`});
     	this.vars.ticking = false;
 	}
 }
