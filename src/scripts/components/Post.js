@@ -31,6 +31,7 @@ class Post extends React.Component {
             <div className="post">
                 <h3 className="title">{post.title.rendered}</h3>
                 <small className="small">{`Posted ${date} ago`}</small>
+                <div dangerouslySetInnerHTML={{__html: post.content.rendered}}></div>
             </div>
         );
     }

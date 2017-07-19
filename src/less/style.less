@@ -54,6 +54,8 @@ body {
 		float: right;
 		margin: 0;
 		height: 50px;
+		z-index: 10;
+    	background: #000;
 		li {
 			display: inline-block;
 			margin-right: 15px;
@@ -369,9 +371,23 @@ body {
 	}
 }
 #about {
+	width: 350px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow: scroll;
+    height: 100vh;
+    z-index: -1;
+	h2 {
+		text-indent: -9999px;
+	    white-space: nowrap;
+	    overflow: hidden;
+	    display: flex;
+	}
 	div.container {
 		min-height: 100vh;
-		padding: 70px 25px;
+		height: calc('100% + 50px');
+		padding: 0 25px 70px 25px;
 
 	}
 	&.active div.about-section {
@@ -381,11 +397,11 @@ body {
 		width: 300px;
 		right: -360px;
     	top: 50px;
-    	position: fixed;
+    	position: absolute;
 		background-color: rgba(0, 0, 0, 1);
 		color: white;
 		text-align: right;
-		padding-top: 20%;
+		//padding-top: 20%;
 		-webkit-transition: all 1s ease;
 		-moz-transition: all 1s ease;
 		-o-transition: all 1s ease;

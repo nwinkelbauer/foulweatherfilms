@@ -36,15 +36,14 @@ class Header extends React.Component {
 
                 {headerMenu.map((page) => {
                     if(page.slug != 'home' && page.slug){
-                        let classer = (!Array.isArray(page.children)) ? 'page-port ' : '';
-                        classer += (page.slug === "portfolio" || page.slug === "about") ? 'deactivate ' + page.slug : '';
+                        let classer1 = (!Array.isArray(page.children)) ? 'page-port ' : '';
+                        let classer2 = (page.slug === "portfolio" || page.slug === "about") ? 'deactivate ' + page.slug : '';
                        return(
-                            <li key={`nav-page-id-${page.id}`} className={classer}><Link 
+                            <li key={`nav-page-id-${page.id}`} className={classer1}><Link 
                                 key={`nav-page-id-${page.id}`} 
                                 to={`/${page.slug}`}
                                 style={{marginRight: '10px'}}
-                                className={classer}
-                                id={classer}
+                                className={classer2}
                             >
                                 {page.title}
                             </Link>
