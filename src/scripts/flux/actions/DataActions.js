@@ -35,6 +35,12 @@ class DataActions {
     // Method for getting Menus data
     getMenus(pages, cb){
         this.api(this.menusEndPoint).then((response)=>{
+            // const menus     = response.menus
+            // const payload   = { pages, menus };
+
+            // this.getSuccess(payload); // Pass returned data to the store
+            // cb(payload); // This callback will be used for dynamic rout building
+
             this.getVideos(pages, response.menus, cb)
         });
         return true;

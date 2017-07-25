@@ -697,18 +697,37 @@ a.back-button {
 		}
 	}
 }
-#blog .container .post {
-	min-height: 200px;
-	h3.title {
-		margin-bottom: 0;
-		font-size: 22px; 
+#blog {
+	background-color: rgba(200, 200, 200, 1);
+	width: 100%;
+	height: 100%;
+	min-height: 100vh; 	
+	z-index: -1;
+	padding-top: 50px;
+	h2 {
+		text-align: center;
+		color: black;
 	}
-	small.date {
-		color: rgba(255, 255, 255, 0.6)
+	.container {
+		margin: 50px 50px;
+		color: black;
+		.post {
+			min-height: 200px;
+			h3.title {
+				margin-bottom: 0;
+				font-size: 22px; 
+			}
+			small.date {
+				color: rgba(255, 255, 255, 0.6)
+			}
+		}
+		@media (min-width: 1100px) {
+			max-width: 1000px;
+	    	margin: 0 auto;
+		}
 	}
 }
 #default ,
-#blog ,
 #photo {
 	background-color: rgba(0, 0, 0, 1);
 	width: 100%;
@@ -720,9 +739,8 @@ a.back-button {
 		text-align: center;
 		color: white;
 	}
-	.container {
-		margin: 50px 50px; 
+	.container { 
 		color: white;
+		margin: 50px 50px;
 	}
-
 }
