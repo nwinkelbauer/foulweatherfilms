@@ -32,15 +32,7 @@ class Video extends React.Component {
                     <small>{page.video_customs.date[0]}</small>
                     <div dangerouslySetInnerHTML={{__html: page.content.rendered}}></div>
                 </div>
-                {catVids &&
-                    <div className="related-video">
-                        <h3>Next Video</h3>
-                        <Link to={`/${cat}/${catVids.slug}`}>
-                            <div className="next-image" style={{backgroundImage: `url(${catVids.featured_image_url[0]})`}}>
-                                <h4>{catVids.title.rendered}</h4>
-                            </div>
-                        </Link>
-                    </div>}
+               
             </div>
         </div>
         );

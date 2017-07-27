@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import $ from 'jquery';
 import DataStore from 'flux/stores/DataStore.js';
 import SubLinks from './SubLinks.js'
-import About from './About.js';
+import AboutSide from './AboutSide.js';
 
 function isEmpty(myObject) {
     for(var key in myObject) {
@@ -38,6 +38,7 @@ class Header extends React.Component {
                     if(page.slug != 'home' && page.slug){
                         let classer1 = (!Array.isArray(page.children)) ? 'page-port ' : '';
                         let classer2 = (page.slug === "portfolio" || page.slug === "about") ? 'deactivate ' + page.slug : '';
+                        let slug = page.slug 
                        return(
                             <li key={`nav-page-id-${page.id}`} className={classer1}><Link 
                                 key={`nav-page-id-${page.id}`} 
@@ -53,7 +54,7 @@ class Header extends React.Component {
                    }
                 })}
                 </ul>
-                <About />
+                <AboutSide />
             </div>
         );
     }
